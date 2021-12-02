@@ -1,0 +1,10 @@
+﻿@page "/dyn"
+<h3>DynamicPage</h3>
+
+@foreach(var widgetType in widgets){
+    <DynamicComponent Type="@widgetType"/>
+}
+
+@code {
+    List<Type> widgets = new List<Type> { typeof(Counter), typeof(FetchData) };
+}

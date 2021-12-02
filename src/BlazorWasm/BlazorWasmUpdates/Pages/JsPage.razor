@@ -1,0 +1,25 @@
+﻿@page "/js"
+@inject IJSRuntime JS
+<h3>Js Page</h3>
+<h1>
+    CSS Isolation
+</h1>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        var js = await JS.InvokeAsync<IJSObjectReference>("import", "./Pages/JsPage.razor.js");
+        await js.InvokeVoidAsync("error");
+
+        // Edit QueryString
+        //var newUri = NavigationManager.GetUriWithQueryParameters(new Dictionary<string, object?>
+        //{
+        //    ["searchTerm"] = "Blazor",
+        //    ["pageSize"] = 20,
+        //    ["page"] = 2
+        //});
+        //NavigationManager.NavigateTo(newUri);
+
+    }
+}
